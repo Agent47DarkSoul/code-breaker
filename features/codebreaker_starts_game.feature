@@ -6,5 +6,5 @@ Feature: code-breaker starts game
   Scenario: start game
     Given I am not playing the game
     When I start a new game
-    Then the game should say "Welcome to Mastermind!"
-    And the game should say "Enter guess:"
+    Then I should see "Welcome to Codebreaker!"
+    And I should see "Enter guess:"
