@@ -1,1 +1,0 @@
-# Require all the files from lib/mastermind

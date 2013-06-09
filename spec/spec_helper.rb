@@ -1,1 +1,1 @@
-require './lib/mastermind'
+require 'codebreaker'
