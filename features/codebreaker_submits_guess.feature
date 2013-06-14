@@ -7,6 +7,11 @@ Feature: code-breaker submits guess
   code, the mark includes a '+' sign. For each number in the guess that matches
   number but not position, the mark includes a '-' sign.
 
+  Each position in the secret code can only be matched once. For example, a
+  guess of '1134' against the secret code '1234' would get three '+' signs: one
+  for exact matches in first, thrid and fourth positions. The '1' in the
+  second position would be ignored
+
   Scenario Outline: submit guess
       Given the secret code is "<code>"
       When I guess "<guess>"
@@ -40,3 +45,25 @@ Feature: code-breaker submits guess
       | 1234 | 1243  | ++-- |
       | 1234 | 1423  | +--- |
       | 1234 | 4321  | ---- |
+
+  Scenarios: matches with duplicates
+      | code | guess | mark |  
+      | 1234 | 1155  | +    |  
+      | 1234 | 5515  | -    |  
+      | 1234 | 1133  | ++   |  
+      | 1234 | 1125  | +-   |  
+      | 1234 | 3345  | --   |  
+      | 1234 | 4234  | +++  |  
+      | 1234 | 2313  | ---  |  
+      | 1234 | 1213  | ++-  |  
+      | 1234 | 1115  | +    |  
+      | 1234 | 5111  | -    |  
+      | 1234 | 1114  | ++   |  
+      | 1234 | 4111  | --   |  
+      | 1134 | 1256  | +    |  
+      | 1134 | 2561  | -    |  
+      | 1134 | 1235  | ++   |  
+      | 1134 | 2511  | --   |  
+      | 1134 | 1135  | +++  |  
+      | 1134 | 3511  | ---  |  
+
