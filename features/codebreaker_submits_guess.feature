@@ -9,7 +9,7 @@ Feature: code-breaker submits guess
 
   Each position in the secret code can only be matched once. For example, a
   guess of '1134' against the secret code '1234' would get three '+' signs: one
-  for exact matches in first, thrid and fourth positions. The '1' in the
+  for exact matches in first, third and fourth positions. The '1' in the
   second position would be ignored
 
   Scenario Outline: submit guess
