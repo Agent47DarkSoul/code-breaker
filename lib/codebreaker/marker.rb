@@ -1,15 +1,16 @@
 module Codebreaker
+  # Represents the marker responsible for calculating exact and number matches
   class Marker
     def initialize(secret, guess, options = {})
       @secret = secret
       @guess = guess
-      @digits = options[:digits] || 4;
+      @digits = options[:digits] || 4
     end
 
     # Count exact matches
     def exact_match_count
       (0...@digits).inject(0) do |count, index|
-        exact_match?(index) ? count += 1 : count
+        exact_match?(index) ? count + 1 : count
       end
     end
 
@@ -30,7 +31,7 @@ module Codebreaker
 
     # Check whether the number at the position is exact match
     def exact_match?(position)
-      @guess[position] === @secret[position]
+      @guess[position] == @secret[position]
     end
 
     def delete_first(code, n)
