@@ -20,29 +20,22 @@ module Codebreaker
 
     # Count the total unique matches of numbers
     def total_match_count
-      count = 0
       secret = @secret.split('')
-
-      @guess.split('').map do |guess_number|
-        if secret.include? guess_number
-          secret.delete_at(secret.index(guess_number))
-          count += 1
-        end
+      @guess.split('').inject(0) do |count, guess_number|
+        count + (delete_first(secret, guess_number) ? 1 : 0)
       end
-
-      count
     end
 
     private
-    
-      # Check whether the number at the position is exact match
-      def exact_match?(position)
-        @guess[position] === @secret[position]
-      end
 
-      # Check whether the number at the position is a number match
-      def number_match?(position)
-        @secret.include?(@guess[position]) && !exact_match?(position)
-      end
+    # Check whether the number at the position is exact match
+    def exact_match?(position)
+      @guess[position] === @secret[position]
+    end
+
+    def delete_first(code, n)
+      i = code.index(n)
+      code.delete_at(i) if i
+    end
   end
 end
